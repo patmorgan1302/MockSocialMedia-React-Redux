@@ -1,8 +1,8 @@
 import  React  from 'react';
 import axios from 'axios';
-import ArticleInspect from './nodeArticleInspect';
+import ArticleInspect from './article-inspect';
 
-export default class nodeArticles extends React.Component{
+export default class nodeArticles extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ export default class nodeArticles extends React.Component{
 
 
     componentDidMount() {
-        axios.get('http://localhost:8080/nodearticles/')
+        axios.get('http://localhost:9000/nodearticles/')
           .then(res => {
             this.setState({
               articles: res.data
@@ -28,14 +28,15 @@ export default class nodeArticles extends React.Component{
             return(
             <ul className="articles-list">
                 {articles.map(article => (
-                    <section key={article}>
-                       <ArticleInspect
-                        articleTitle={article.title}
-                        articleAuthor={article.author}
-                        articleBody={article.body}
-                        />
-                        </section>))}
-                    </ul>
-                )
+                  <div key={article._id}>
+                    <ArticleInspect
+                      articleTitle={article.title}
+                      articleAuthor={article.author}
+                      articleBody={article.body}
+                      articleDate={article.date}
+                    />
+                  </div>))}
+                </ul>
+               )
             };
         };
