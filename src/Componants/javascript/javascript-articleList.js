@@ -1,6 +1,8 @@
 import  React  from 'react';
 import axios from 'axios';
-import ArticleInspect from './article-inspect';
+import ArticleInspect from '../article-inspect';
+
+const URL = 'http://localhost:9000/jsarticles/';
 
 export default class nodeArticles extends React.Component {
     constructor(props){
@@ -12,7 +14,7 @@ export default class nodeArticles extends React.Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:9000/nodearticles/')
+        axios.get(URL)
           .then(res => {
             this.setState({
               articles: res.data

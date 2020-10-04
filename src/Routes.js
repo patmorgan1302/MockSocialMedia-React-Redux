@@ -5,54 +5,79 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import './Routes.css';
-import NodeArticles from './Componants/article-list';
 
-export default function Routes(){
+import JSArticles from "./Componants/javascript/javascript-articleList";
+import NodeArticles from './Componants/node/node-articleList';
+import CommentComment from './Componants/comment/comment';
+
+export default function BasicExample() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul className="ul">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/jsarticles">JS Articles</Link>
+          </li>
+          <li>
+            <Link to="/nodejs">NodeJS</Link>
+          </li>
+          <li>
+            <Link to="/comment">Comment</Link>
+          </li>
+        </ul>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+        <hr />
+
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/jsarticles">
+            <Javascript />
+          </Route>
+          <Route path="/nodejs">
+            <NodeJS />
+          </Route>
+          <Route path="/comment">
+            <Comment />
           </Route>
         </Switch>
       </div>
     </Router>
   );
-};
-
+}
 
 function Home() {
-  return <h2 className="h2">Poo</h2>;
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
 }
 
-function About() {
-  return <NodeArticles/>;
+function Javascript() {
+  return (
+    <div>
+     <JSArticles />
+    </div>
+  );
 }
 
-function Users() {
-  return <h2 className="h2">Users</h2>;
+function NodeJS() {
+  return (
+    <div>
+     <NodeArticles />
+    </div>
+  );
+}
+
+function Comment() {
+  return (
+    <div>
+     <CommentComment />
+    </div>
+  );
 }

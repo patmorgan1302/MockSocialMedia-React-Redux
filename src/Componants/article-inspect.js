@@ -16,7 +16,6 @@ const ArticleInspect = (props) => {
                     <br />
                     <br />                    
                 </Media.Body>
-        
             </Media>
         </div>
     )

@@ -1,46 +1,46 @@
-import React from 'react';
+import  React  from 'react';
 import axios from 'axios';
+import ArticleInspect from '../article-inspect';
+import Comment from '../comment/comment';
 
-const URL = 'http://localhost:9000/nodearticles';
+const URL = 'http://localhost:9000/nodearticles/';
 
-export default class NodeList extends React.Component{
-  constructor(props){
-    super(props);
-      this.state = {
-        articles: [],
-}}
-componentDidMount(){
-  this.fetchedData();
-}
- 
-fetchedData(){
-  axios.get(URL)
-  .then(res => {
-    this.setState({
-      // name: res.data.name,
-      // email: res.data.email,
-      // rollno: res.data.rollno
-      articles: res.date.articles
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-}
-render(){
-  const{articles} = this.state;
-    return(
-        <div className="skills-list">
-          <div className="box">
-            {articles.map(article => (
-              <div key={article}>
-                <div className="skill-list-item">
-                    {article.data.title}
-                    {article.authory}
-                    {article.body}
-                </div>
-              </div>))}
-            </div>
-        </div>)}}
+export default class nodeArticles extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            articles : []
+        };
+    };
 
-            
+
+    componentDidMount() {
+        axios.get(URL)
+          .then(res => {
+            this.setState({
+              articles: res.data
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      };
+
+      render(){
+        const{articles} = this.state;
+            return(
+            <ul className="articles-list">
+                {articles.map(article => (
+                  <div key={article._id}>
+                    <ArticleInspect
+                      articleTitle={article.title}
+                      articleAuthor={article.author}
+                      articleBody={article.body}
+                      articleDate={article.date}
+                    />
+                  </div>))}
+                  <Comment />
+                </ul>
+               )
+            };
+        };
